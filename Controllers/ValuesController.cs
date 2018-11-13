@@ -12,36 +12,25 @@ namespace radioapi.Controllers
     {
         private radioapi.db.radioContext dbContext = new db.radioContext();
 
-        // GET api/values
+        // GET api/
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
             return dbContext.Radio.Select(r => $"{r.Id}: {r.Name}").ToList();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<IEnumerable<dynamic>> Get(int id)
+        // GET api/1/top/5
+        [HttpGet("{id}/top/{top}")]
+        public ActionResult<IEnumerable<db.File>> Top(int id, int top=10)
         {
-            return dbContext.File.Where(f => f.RadioId == id).Select(f => new {time=f.CreatedOn, title=f.Title}).ToList();
+            return dbContext.File.Where(f => f.RadioId == id).OrderByDescending(f => f.CreatedOn).Take(top).ToList();
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
+        // GET api/1/dates
+        [HttpGet("{id}/dates")]
+        public ActionResult<IEnumerable<DateTime>> Dates(int id)
         {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return dbContext.File.Where(f => f.RadioId == id).Select(f => (DateTime)f.CreatedOn.Date).Distinct().ToList();
         }
     }
 }

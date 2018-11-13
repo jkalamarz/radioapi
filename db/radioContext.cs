@@ -85,13 +85,11 @@ namespace radioapi.db
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
+                    .HasMaxLength(20);
 
                 entity.Property(e => e.StreamUrl)
                     .HasColumnName("stream_url")
-                    .HasMaxLength(80)
-                    .IsUnicode(false);
+                    .HasMaxLength(80);
             });
         }
     }
