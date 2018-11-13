@@ -5,11 +5,6 @@ namespace radioapi.db
 {
     public partial class File
     {
-        public File()
-        {
-            InverseRadio = new HashSet<File>();
-        }
-
         public DateTime? CreatedOn { get; set; }
         public string Description { get; set; }
         public int Id { get; set; }
@@ -18,7 +13,6 @@ namespace radioapi.db
         public string PathAac { get; set; }
         public int? RadioId { get; set; }
 
-        public File Radio { get; set; }
-        public ICollection<File> InverseRadio { get; set; }
+        public Radio Radio { get; set; }
     }
 }

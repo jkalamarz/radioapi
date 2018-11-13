@@ -67,10 +67,9 @@ namespace radioapi.db
                     .HasColumnType("int(11)");
 
                 entity.HasOne(d => d.Radio)
-                    .WithMany(p => p.InverseRadio)
+                    .WithMany(p => p.File)
                     .HasForeignKey(d => d.RadioId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("file_ibfk_1");
+                    .HasConstraintName("FK_file_radio_id");
             });
 
             modelBuilder.Entity<Radio>(entity =>
