@@ -21,9 +21,9 @@ namespace radioapi.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<IEnumerable<dynamic>> Get(int id)
         {
-            return "value";
+            return dbContext.File.Where(f => f.Id == id).Select(f => new {time=f.CreatedOn, title=f.Title}).ToList();
         }
 
         // POST api/values
