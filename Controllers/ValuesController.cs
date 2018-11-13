@@ -23,7 +23,7 @@ namespace radioapi.Controllers
         [HttpGet("{id}")]
         public ActionResult<IEnumerable<dynamic>> Get(int id)
         {
-            return dbContext.File.Where(f => f.Id == id).Select(f => new {time=f.CreatedOn, title=f.Title}).ToList();
+            return dbContext.File.Where(f => f.RadioId == id).Select(f => new {time=f.CreatedOn, title=f.Title}).ToList();
         }
 
         // POST api/values
