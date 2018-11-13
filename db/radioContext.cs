@@ -40,12 +40,12 @@ namespace radioapi.db
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.CreatedOn).HasColumnName("created_on");
-
-                entity.Property(e => e.Description)
-                    .HasColumnName("description")
+                entity.Property(e => e.Author)
+                    .HasColumnName("author")
                     .HasMaxLength(200)
                     .IsUnicode(false);
+
+                entity.Property(e => e.CreatedOn).HasColumnName("created_on");
 
                 entity.Property(e => e.PathAac)
                     .HasColumnName("path_aac")
@@ -62,9 +62,19 @@ namespace radioapi.db
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
+                entity.Property(e => e.PathOgg)
+                    .HasColumnName("path_ogg")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.RadioId)
                     .HasColumnName("radio_id")
                     .HasColumnType("int(11)");
+
+                entity.Property(e => e.Title)
+                    .HasColumnName("title")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Radio)
                     .WithMany(p => p.File)
