@@ -10,11 +10,13 @@ namespace radioapi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private radioapi.db.radioContext dbContext = new db.radioContext();
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return dbContext.Radio.Select(r => $"{r.Id}: {r.Name}").ToList();
         }
 
         // GET api/values/5
