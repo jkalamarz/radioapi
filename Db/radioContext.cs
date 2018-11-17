@@ -39,7 +39,7 @@ namespace radioapi.Db
                     .HasName("FK_file_type_id");
 
                 entity.HasIndex(e => e.ProgramId)
-                    .HasName("program_id");
+                    .HasName("FK_file_program_id");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
@@ -63,6 +63,12 @@ namespace radioapi.Db
                     .HasForeignKey(d => d.FileTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_file_type_id");
+
+                entity.HasOne(d => d.Program)
+                    .WithMany(p => p.File)
+                    .HasForeignKey(d => d.ProgramId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_file_program_id");
             });
 
             modelBuilder.Entity<FileType>(entity =>

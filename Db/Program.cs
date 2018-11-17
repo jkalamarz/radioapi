@@ -5,6 +5,11 @@ namespace radioapi.Db
 {
     public partial class Program
     {
+        public Program()
+        {
+            File = new HashSet<File>();
+        }
+
         public int Id { get; set; }
         public int RadioId { get; set; }
         public DateTime Timestamp { get; set; }
@@ -12,5 +17,6 @@ namespace radioapi.Db
         public string Title { get; set; }
 
         public Radio Radio { get; set; }
+        public ICollection<File> File { get; set; }
     }
 }

@@ -11,5 +11,6 @@ namespace radioapi.Db
         public string Path { get; set; }
 
         public FileType FileType { get; set; }
+        public Program Program { get; set; }
     }
 }

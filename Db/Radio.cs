@@ -7,7 +7,6 @@ namespace radioapi.Db
     {
         public Radio()
         {
-            FileOld = new HashSet<FileOld>();
             Program = new HashSet<Program>();
         }
 
@@ -15,7 +14,6 @@ namespace radioapi.Db
         public string Name { get; set; }
         public string StreamUrl { get; set; }
 
-        public ICollection<FileOld> FileOld { get; set; }
         public ICollection<Program> Program { get; set; }
     }
 }
