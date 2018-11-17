@@ -25,7 +25,7 @@ namespace radioapi.Controllers
         public ActionResult<IEnumerable<Db.Program>> Top(int id, int top=10)
         {
             var res = dbContext.Program.Include(p => p.File).Where(f => f.RadioId == id).OrderByDescending(f => f.Timestamp).Take(top).ToList();
-            res.ForEach(p => p.File.ForEach(f => f.Program = null));
+            res.ForEach(p => p.File.ToList().ForEach(f => f.Program = null));
             return res;
         }
 
@@ -34,7 +34,7 @@ namespace radioapi.Controllers
         public ActionResult<IEnumerable<Db.Program>> Search(int id, string filter)
         {
             var res = dbContext.Program.Include(p => p.File).Where(f => f.RadioId == id).Where(p => p.Title.Contains(filter) || p.Author.Contains(filter)).OrderByDescending(f => f.Timestamp).Take(50).ToList();
-            res.ForEach(p => p.File.ForEach(f => f.Program = null));
+            res.ForEach(p => p.File.ToList().ForEach(f => f.Program = null));
             return res;
         }
 
