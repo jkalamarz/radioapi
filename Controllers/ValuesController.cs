@@ -31,7 +31,7 @@ namespace radioapi.Controllers
         [HttpGet("{id}/dates")]
         public ActionResult<IEnumerable<DateTime>> Dates(int id)
         {
-            return dbContext.Program.FromSql("select distinct DATE(timestamp) as Timestamp from Program where radio_id={0}", id).Select(p => p.Timestamp).ToList();
+            return dbContext.Program.FromSql("select distinct DATE(timestamp) as Timestamp from program where radio_id={0};", id).Select(p => p.Timestamp).ToList();
         }
     }
 }
