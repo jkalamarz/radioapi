@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace radioapi.Controllers
 {
@@ -10,7 +11,7 @@ namespace radioapi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-/*        private radioapi.db.radioContext dbContext = new db.radioContext();
+        private radioapi.Db.radioContext dbContext = new Db.radioContext();
 
         // GET api/
         [HttpGet]
@@ -21,16 +22,16 @@ namespace radioapi.Controllers
 
         // GET api/1/top/5
         [HttpGet("{id}/top/{top}")]
-        public ActionResult<IEnumerable<db.File>> Top(int id, int top=10)
+        public ActionResult<IEnumerable<Db.Program>> Top(int id, int top=10)
         {
-            return dbContext.File.Where(f => f.RadioId == id).OrderByDescending(f => f.CreatedOn).Take(top).ToList();
+            return dbContext.Program.Where(f => f.RadioId == id).OrderByDescending(f => f.Timestamp).Take(top).ToList();
         }
 
         // GET api/1/dates
         [HttpGet("{id}/dates")]
         public ActionResult<IEnumerable<DateTime>> Dates(int id)
         {
-            return dbContext.File.Where(f => f.RadioId == id).Select(f => (DateTime)f.CreatedOn.Date).Distinct().ToList();
-        }*/
+            return dbContext.Program.FromSql("select distinct DATE(timestamp) as Timestamp from Program where radio_id={0}", id).Select(p => p.Timestamp).ToList();
+        }
     }
 }
