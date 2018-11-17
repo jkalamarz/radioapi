@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace radioapi.db
+namespace radioapi.Db
 {
-    public partial class Radio
+    public partial class FileType
     {
-        public Radio()
+        public FileType()
         {
             File = new HashSet<File>();
         }
 
-        public string Name { get; set; }
-        public string StreamUrl { get; set; }
         public int Id { get; set; }
+        public string Type { get; set; }
+        public string Ext { get; set; }
+        public string Description { get; set; }
 
         public ICollection<File> File { get; set; }
     }

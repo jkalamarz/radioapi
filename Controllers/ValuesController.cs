@@ -10,7 +10,7 @@ namespace radioapi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private radioapi.db.radioContext dbContext = new db.radioContext();
+/*        private radioapi.db.radioContext dbContext = new db.radioContext();
 
         // GET api/
         [HttpGet]
@@ -31,6 +31,6 @@ namespace radioapi.Controllers
         public ActionResult<IEnumerable<DateTime>> Dates(int id)
         {
             return dbContext.File.Where(f => f.RadioId == id).Select(f => (DateTime)f.CreatedOn.Date).Distinct().ToList();
-        }
+        }*/
     }
 }
